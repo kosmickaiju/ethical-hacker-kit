@@ -15,3 +15,6 @@ def scan_target(target):
     for port in range(1, 1025): 
         scan_port(target, port)
 
+if __name__ == "__main__": 
+    target_ip = input("Enter target IP: ") 
+    scan_target(target_ip)

@@ -8,4 +8,4 @@ def main():
 
     if args.scan_network():
         from scanners import network_scan, port_scan
-        
+        port_scan.scan_target()
