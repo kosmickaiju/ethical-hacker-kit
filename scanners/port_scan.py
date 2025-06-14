@@ -1,4 +1,5 @@
 import socket 
+import re
 
 def scan_port(target, port): 
     try: 
@@ -16,5 +17,10 @@ def scan_target(target):
         scan_port(target, port)
 
 if __name__ == "__main__": 
-    target_ip = input("Enter target IP: ") 
-    scan_target(target_ip)
+    target_ip = input("Enter target IP (IPv4 format): ") 
+    pattern = r"^\d{1,3}(\.\d{1,3}){3}$"
+    if re.fullmatch(pattern, target_ip):
+        scan_target(target_ip)
+    else:
+        print(f'Not a valid IPv4 address. Try again!')
+    
