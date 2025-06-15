@@ -1,4 +1,5 @@
 import argparse
+import re
 
 def main():
     parser = argparse.ArgumentParser(description='Ethical Hacker Training Kit')
@@ -6,7 +7,15 @@ def main():
 
     args = parser.parse_args()
 
-    if args.scan_network():
+    if args.scan_network:
         from scanners import network_scan, port_scan
-        port_scan.scan_target()
-        network_scan.scan()
+        target = input('Enter target IP in IPv4: ')
+        pattern = r"^\d{1,3}(\.\d{1,3}){3}$"
+        if re.fullmatch(pattern, target):
+            port_scan.scan_target(target)
+            network_scan.scan(target)
+        else:
+            print(f'Not a valid IPv4 address. Try again!')
+        
+if __name__ == '__main__':
+    main()
